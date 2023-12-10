@@ -3,14 +3,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 250px;
+    max-width: 250px; /* Adicionado 'max-width' para garantir que não ultrapasse a largura máxima */
+    width: 100%; /* Garante que a largura seja 100% do contêiner pai */
     border-radius: 6px;
     box-shadow: -10px 10px 18px 0px rgba(0,0,0,0.75);
     padding: 0;
+    margin: 10px; /* Adicionado espaço entre as cartas */
+
 }
 
-.card img{
-    border-radius: 8px 8px 10px 10px;
-    width: 250px;
-    height: 200px;
+.card img {
+    border-radius: 8px 8px 0 0; /* Removido o arredondamento da parte inferior da imagem */
+    width: 100%;
+    height: auto; /* Adicionado para garantir que a altura seja proporcional à largura */
+    max-height: 200px; /* Altura máxima para garantir que as imagens não fiquem muito altas */
 }

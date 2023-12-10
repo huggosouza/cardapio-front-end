@@ -3,20 +3,27 @@ import './App.css'
 import { Card } from './components/card/card';
 import { useFoodData } from './hooks/useFoodData';
 import { CreateModal } from './components/card/create-modal/create-modal';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { data } = useFoodData();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [textoBotaoNovo, setTextoBotaoNovo] = useState('Novo');
+  const [hideBtnClass, setHideBtnClass] = useState('btn-Novo');
 
   const handleOpenModal = () => {
     setIsModalOpen(prev => !prev);
-  }
+    setTextoBotaoNovo(prevTexto => prevTexto === 'Novo' ? 'Esconder' : 'Novo');
+    setHideBtnClass(prevClass => prevClass === 'btn-Novo' ? 'btn-Hide' : 'btn-Novo');
+  };
 
   return (
 
     <div className="container">
       <div className="App">
       </div>
+      {isModalOpen && <CreateModal />}
       <h1>Cardápio</h1>
       <div className="card-grid">
         {data?.map(foodData => (
@@ -27,9 +34,9 @@ function App() {
             image={foodData.image}
           />
         ))}
+        <ToastContainer />
       </div>
-      {isModalOpen && <CreateModal />}
-      <button onClick={handleOpenModal}>Novo</button>
+      <button className={hideBtnClass} onClick={handleOpenModal}>{textoBotaoNovo}</button>
     </div>
   );
 }
